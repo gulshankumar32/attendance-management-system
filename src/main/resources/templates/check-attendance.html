@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Check Attendance</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+<body>
+<div th:include="header.html"></div>
+<div th:switch="${attendanceList}">
+    <h2 th:case="null">Not Employee Avaliable!</h2>
+    <div th:case="*">
+<table class="table">
+    <thead>
+    <tr>
+        <th>User Name</th>
+        <th>User Email</th>
+        <th>Current Date</th>
+        <th>Check In</th>
+        <th>Check Out</th>
+        <th>Hours</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr th:each="attendance, itemStat : ${attendanceList}">
+            <td th:text="${attendance.getUserBean().getFirstName()}"></td>
+            <td th:text="${attendance.getUserBean().getEmail()}"></td>
+            <td th:text="${attendance.getCreatedDate()}"></td>
+            <td th:text="${attendance.getCheckIn()}"></td>
+            <td th:text="${attendance.getCheckOut()}"></td>
+            <td th:text="${attendance.getHours()}"></td>
+        </tr>
+    </tbody>
+</table>
+    </div>
+    </div>
+</div>
+
+</body>
+</html>
